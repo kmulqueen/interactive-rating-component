@@ -1,5 +1,12 @@
+import Card from "./components/Card/Card";
+import Container from "./components/layout/Container";
+
 function App() {
-  return <h1>First commit</h1>;
+  return (
+    <Container as="main">
+      <Card />
+    </Container>
+  );
 }
 
 export default App;

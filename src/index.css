@@ -15,6 +15,14 @@
   html {
     font-family: "Overpass", sans-serif;
     font-optical-sizing: auto;
+    background-color: var(--color-grey-950);
+    min-height: 100vh;
+    display: grid;
+    place-content: center;
+  }
+
+  main {
+    @apply p-6;
   }
 }
 
@@ -75,5 +83,35 @@
 }
 
 @utility card-gradient {
-  @apply from-gradient-start to-gradient-end bg-linear-to-b;
+  @apply from-gradient-start to-gradient-end bg-radial-[at_50%_10%] to-75%;
+}
+
+@layer components {
+  .star-icon-bg {
+    @apply bg-grey-900 mb-6 w-fit rounded-full p-3 sm:mb-8 sm:p-4;
+  }
+  .card {
+    @apply card-gradient grid max-w-[412px] rounded-2xl p-6 sm:px-6 sm:py-8;
+  }
+  .card-title {
+    @apply text-preset-2 sm:text-preset-1 mb-4 text-white;
+  }
+  .card-paragraph {
+    @apply text-preset-5-regular sm:text-preset-4-regular text-grey-500 mb-4;
+  }
+  .radio-input {
+    @apply sr-only;
+  }
+  .radio-label {
+    @apply text-preset-5-bold sm:text-preset-3 text-grey-500 bg-grey-900 hover:text-grey-900 grid h-10 w-10 cursor-pointer place-content-center rounded-4xl p-[21px] hover:bg-white sm:p-[25px];
+  }
+  .radio-input:checked + .radio-label {
+    @apply text-grey-900 bg-orange-500;
+  }
+  .radio-input:focus-visible + .radio-label {
+    @apply text-grey-900 bg-white;
+  }
+  .submit-button {
+    @apply text-preset-5-bold sm:text-preset-5-semibold text-grey-950 w-full cursor-pointer rounded-3xl bg-orange-500 py-4 uppercase hover:bg-white focus:bg-white focus:outline-0 focus-visible:bg-white focus-visible:outline-0 active:bg-white;
+  }
 }

@@ -86,6 +86,11 @@
   @apply from-gradient-start to-gradient-end bg-radial-[at_50%_10%] to-75%;
 }
 
+@utility circle-clickable {
+  @apply text-preset-5-bold sm:text-preset-3 text-grey-500 bg-grey-900 hover:text-grey-900 grid h-10 w-10 cursor-pointer place-content-center rounded-4xl p-[21px] hover:bg-white sm:p-[25px];
+  letter-spacing: 0px;
+}
+
 @layer components {
   .star-icon-bg {
     @apply bg-grey-900 mb-6 w-fit rounded-full p-3 sm:mb-8 sm:p-4;
@@ -103,7 +108,7 @@
     @apply sr-only;
   }
   .radio-label {
-    @apply text-preset-5-bold sm:text-preset-3 text-grey-500 bg-grey-900 hover:text-grey-900 grid h-10 w-10 cursor-pointer place-content-center rounded-4xl p-[21px] hover:bg-white sm:p-[25px];
+    @apply circle-clickable;
   }
   .radio-input:checked + .radio-label {
     @apply text-grey-900 bg-orange-500;
@@ -119,5 +124,8 @@
   }
   .thanks-results {
     @apply text-preset-5-regular sm:text-preset-4-regular bg-grey-900 my-6 w-fit justify-self-center rounded-full px-4 py-2 text-orange-500;
+  }
+  .reset-button {
+    @apply circle-clickable justify-self-end focus:bg-white focus:outline-0 focus-visible:bg-white focus-visible:outline-0 active:bg-white;
   }
 }

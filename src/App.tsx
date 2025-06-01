@@ -1,13 +1,11 @@
-import FormCard from "./components/Card/FormCard";
-import ThanksCard from "./components/Card/ThanksCard";
-import Container from "./components/layout/Container";
+import AppContents from "./components/App/AppContents";
+import { FormProvider } from "./contexts/FormProvider";
 
 function App() {
   return (
-    <Container as="main">
-      <FormCard />
-      <ThanksCard />
-    </Container>
+    <FormProvider>
+      <AppContents />
+    </FormProvider>
   );
 }
 

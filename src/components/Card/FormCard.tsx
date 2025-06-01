@@ -3,7 +3,7 @@ import StarIcon from "../layout/StarIcon";
 import Form from "../Form/Form";
 import CardText from "./CardText";
 
-export default function Card() {
+export default function FormCard() {
   return (
     <Container as="article" className="card">
       <StarIcon />

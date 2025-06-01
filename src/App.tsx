@@ -1,10 +1,12 @@
-import Card from "./components/Card/Card";
+import FormCard from "./components/Card/FormCard";
+import ThanksCard from "./components/Card/ThanksCard";
 import Container from "./components/layout/Container";
 
 function App() {
   return (
     <Container as="main">
-      <Card />
+      <FormCard />
+      <ThanksCard />
     </Container>
   );
 }

@@ -58,7 +58,7 @@
   font-weight: 400;
   font-size: 0.9375rem;
   line-height: 1.1875rem;
-  letter-spacing: 2px;
+  letter-spacing: 0px;
 }
 
 @utility text-preset-5-bold {
@@ -76,7 +76,7 @@
 }
 
 @utility text-preset-5-regular {
-  font-weight: 600;
+  font-weight: 400;
   font-size: 0.875rem;
   line-height: 1.375rem;
   letter-spacing: 0px;
@@ -91,7 +91,7 @@
     @apply bg-grey-900 mb-6 w-fit rounded-full p-3 sm:mb-8 sm:p-4;
   }
   .card {
-    @apply card-gradient grid max-w-[412px] rounded-2xl p-6 sm:px-6 sm:py-8;
+    @apply card-gradient grid max-w-[412px] rounded-2xl p-6 sm:rounded-4xl sm:px-6 sm:py-8;
   }
   .card-title {
     @apply text-preset-2 sm:text-preset-1 mb-4 text-white;
@@ -113,5 +113,11 @@
   }
   .submit-button {
     @apply text-preset-5-bold sm:text-preset-5-semibold text-grey-950 w-full cursor-pointer rounded-3xl bg-orange-500 py-4 uppercase hover:bg-white focus:bg-white focus:outline-0 focus-visible:bg-white focus-visible:outline-0 active:bg-white;
+  }
+  .thanks-icon {
+    @apply justify-self-center;
+  }
+  .thanks-results {
+    @apply text-preset-5-regular sm:text-preset-4-regular bg-grey-900 my-6 w-fit justify-self-center rounded-full px-4 py-2 text-orange-500;
   }
 }

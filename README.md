@@ -13,12 +13,14 @@ This is a solution to the [Interactive rating component challenge on Frontend Me
   - [My process](#my-process)
     - [Built with](#built-with)
     - [What I learned](#what-i-learned)
+      - [1. Context API with useReducer for form state management](#1-context-api-with-usereducer-for-form-state-management)
+      - [2. Controlled vs Uncontrolled component patterns](#2-controlled-vs-uncontrolled-component-patterns)
     - [Continued development](#continued-development)
-    - [Useful resources](#useful-resources)
+      - [1. Advanced Form Patterns](#1-advanced-form-patterns)
+      - [2. Context API Optimization](#2-context-api-optimization)
+      - [3. Advanced TypeScript Patterns](#3-advanced-typescript-patterns)
+      - [4. Accessibility in Custom Form Components](#4-accessibility-in-custom-form-components)
   - [Author](#author)
-  - [Acknowledgments](#acknowledgments)
-
-**Note: Delete this note and update the table of contents based on what sections you keep.**
 
 ## Overview
 
@@ -33,85 +35,119 @@ Users should be able to:
 
 ### Screenshot
 
-![](./screenshot.jpg)
-
-Add a screenshot of your solution. The easiest way to do this is to use Firefox to view your project, right-click the page and select "Take a Screenshot". You can choose either a full-height screenshot or a cropped one based on how long the page is. If it's very long, it might be best to crop it.
-
-Alternatively, you can use a tool like [FireShot](https://getfireshot.com/) to take the screenshot. FireShot has a free option, so you don't need to purchase it.
-
-Then crop/optimize/edit your image however you like, add it to your project, and update the file path in the image above.
-
-**Note: Delete this note and the paragraphs above when you add your screenshot. If you prefer not to add a screenshot, feel free to remove this entire section.**
+**Mobile**
+![Kyle Mulqueen's mobile solution](./public/assets/images/kyle-solution-mobile.png)
+**Desktop with hover/focus states**
+![Kyle Mulqueen's desktop solution with hover and focus states](./public/assets/images/kyle-solution-desktop-states.png)
+**Desktop thank you card**
+![Kyle Mulqueen's desktop solution "thank you card" section](./public/assets/images/kyle-solution-desktop-thanks.png)
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Live Site URL: [GitHub Pages](https://kmulqueen.github.io/interactive-rating-component/)
 
 ## My process
 
 ### Built with
 
+- [TypeScript](https://www.typescriptlang.org/)
+- [React](https://reactjs.org/) - JS library
+- [Vite](https://vite.dev/) - Frontend build tool
+- [Tailwind CSS](https://tailwindcss.com/) - For styles
+- Mobile-first workflow
 - Semantic HTML5 markup
 - CSS custom properties
 - Flexbox
 - CSS Grid
-- Mobile-first workflow
-- [React](https://reactjs.org/) - JS library
-- [Next.js](https://nextjs.org/) - React framework
-- [Styled Components](https://styled-components.com/) - For styles
-
-**Note: These are just examples. Delete this note and replace the list above with your own choices**
 
 ### What I learned
 
-Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
+#### 1. Context API with useReducer for form state management
 
-To see how you can add code snippets, see below:
+I learned how to properly structure a form state management system using React Context and useReducer. Because this app is very small and doesn't contain very much logic for state management, the key insight was keeping actions simple and specific rather than trying to make them overly generic:
 
-```html
-<h1>Some HTML code I'm proud of</h1>
-```
+```tsx
+// Simple, specific actions work better than generic ones
+type FormAction =
+  | { type: "SET_RATING"; payload: number }
+  | { type: "SUBMIT_FORM" }
+  | { type: "RESET_FORM" };
 
-```css
-.proud-of-this-css {
-  color: papayawhip;
+// Clean reducer with clear responsibilities
+function formReducer(state: FormState, action: FormAction): FormState {
+  switch (action.type) {
+    case "SET_RATING":
+      return { ...state, rating: action.payload };
+    case "SUBMIT_FORM":
+      return { ...state, isSubmitted: true };
+    case "RESET_FORM":
+      return { isSubmitted: false, rating: 0 };
+    default:
+      return state;
+  }
 }
 ```
 
-```js
-const proudOfThisFunc = () => {
-  console.log("🎉");
-};
+#### 2. Controlled vs Uncontrolled component patterns
+
+I learned the difference between controlled components (where React manages the state) and uncontrolled components (where the DOM manages the state), and when to use each:
+
+```tsx
+// Controlled component - React manages the state
+<input
+  type="radio"
+  name="rating"
+  value={label}
+  checked={isChecked}  // React controls this
+  onChange={handleChange}  // React handles changes
+/>
+
+// Uncontrolled component - DOM manages the state
+<input
+  type="radio"
+  name="rating"
+  value={label}
+  // No checked prop, no onChange - DOM handles it
+/>
 ```
-
-If you want more help with writing markdown, we'd recommend checking out [The Markdown Guide](https://www.markdownguide.org/) to learn more.
-
-**Note: Delete this note and the content within this section and replace with your own learnings.**
 
 ### Continued development
 
-Use this section to outline areas that you want to continue focusing on in future projects. These could be concepts you're still not completely comfortable with or techniques you found useful that you want to refine and perfect.
+#### 1. Advanced Form Patterns
 
-**Note: Delete this note and the content within this section and replace with your own plans for continued development.**
+I want to explore more complex form scenarios that would implement and benefit from FormData, such as:
 
-### Useful resources
+- File upload handling
+- Multi-step forms with mixed controlled/uncontrolled inputs
+- Forms with dynamic field generation
+- Integration with form validation libraries
 
-- [Example resource 1](https://www.example.com) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
-- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
+#### 2. Context API Optimization
 
-**Note: Delete this note and replace the list above with resources that helped you during the challenge. These could come in handy for anyone viewing your solution or for yourself when you look back on this project in the future.**
+While I understand the basics of Context API, I want to dive deeper into:
+
+- Performance optimization techniques (memo, useMemo, useCallback)
+- Context splitting strategies for larger applications
+- When to use Context vs other state management solutions
+
+#### 3. Advanced TypeScript Patterns
+
+I want to improve my TypeScript skills, particularly:
+
+- More sophisticated generic types for reusable form components
+- Better type inference for form validation
+- Advanced utility types for form handling
+
+#### 4. Accessibility in Custom Form Components
+
+I want to focus more on:
+
+- ARIA attributes for custom radio buttons and form controls
+- Keyboard navigation patterns
+- Screen reader compatibility testing
+- Focus management in complex forms
 
 ## Author
 
-- Website - [Add your name here](https://www.your-site.com)
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
-- Twitter - [@yourusername](https://www.twitter.com/yourusername)
-
-**Note: Delete this note and add/remove/edit lines above based on what links you'd like to share.**
-
-## Acknowledgments
-
-This is where you can give a hat tip to anyone who helped you out on this project. Perhaps you worked in a team or got some inspiration from someone else's solution. This is the perfect place to give them some credit.
-
-**Note: Delete this note and edit this section's content as necessary. If you completed this challenge by yourself, feel free to delete this section entirely.**
+- Website - [Kyle's GitHub](https://github.com/kmulqueen)
+- Frontend Mentor - [@kmulqueen](https://www.frontendmentor.io/profile/kmulqueen)
